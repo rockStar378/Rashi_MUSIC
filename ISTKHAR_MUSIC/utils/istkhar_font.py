@@ -1,4 +1,4 @@
-class Fonts:b
+class Fonts:
     def typewriter(text):
         style = {
             "a": "𝚊",
