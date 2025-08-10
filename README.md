@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/TEAM-ISTKHAR/stargazers"><img src="https://img.shields.io/github/stars/TEAM-ISTKHAR/ISTKHAR_MUSIC?color=black&logo=github&logoColor=black&style=for-the-badge" alt="Stars" /></a>
+<a href="https://github.com/ISTKHAR-king/ISTKHAR_MUSIC"><img src="https://img.shields.io/github/stars/TEAM-ISTKHAR/ISTKHAR_MUSIC?color=black&logo=github&logoColor=black&style=for-the-badge" alt="Stars" /></a>
 <a href="https://github.com/TEAM-ISTKHAR/ISTKHAR_MUSIC/network/members"> <img src="https://img.shields.io/github/forks/TEAM-ISTKHAR/ISTKHAR_MUSIC?color=black&logo=github&logoColor=black&style=for-the-badge" /></a>
 <a href="https://github.com/TEAM-ISTKHAR/ISTKHAR_MUSIC/blob/master/LICENSE"> <img src="https://img.shields.io/badge/License-MIT-blueviolet?style=for-the-badge" alt="License" /> </a>
 <a href="https://www.python.org/"> <img src="https://img.shields.io/badge/Written%20in-Python-orange?style=for-the-badge&logo=python" alt="Python" /> </a>
@@ -28,11 +28,11 @@
     ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
 </h3>
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/TEAM-ISTKHAR/ISTKHAR_MUSIC"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/ISTKHAR-king/ISTKHAR_MUSIC"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 
 </p>
 
-**𝙏𝙀𝙎𝙏 𝘽𝙊𝙏 ➣ [˹𝐈sᴛᴋʜᴀʀ ꭙ 𝐂ʀᴇᴡ ꭙ 𝐌ᴜꜱɪᴄ™ ˹ʙꜱ](https://t.me/CrewMusic_bot)**
+**𝙏𝙀𝙎𝙏 𝘽𝙊𝙏 ➣ [˹𝐈sᴛᴋʜᴀʀ ꭙ 𝐌ᴜꜱɪᴄ™ ˹ꜱ](https://t.me/KittuXrobot)**
 
 
 
