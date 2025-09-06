@@ -1,7 +1,7 @@
 ━━━━━━━━━━━━━━━━━━━━
 
 <h2 align="center">
-    ──「⛦🦋 𝗜𝗦𝗧𝗞𝗛𝗔𝗥 ✘ 𝗠𝗨𝗦𝗜𝗖 🦋⛦」──
+    ──「⛦🦋 𝐒ͱ꧊᱂ᴇᴇ֟֟፝͠ ✘ 𝗠𝗨𝗦𝗜𝗖 🦋⛦」──
 </h2>
 
 <p align="center">
@@ -18,7 +18,7 @@
 
 ━━━━━━━━━━━━━━━━━━━━
 </h2>
-<img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=♦𝙳𝙴𝙿𝙻𝙾𝚈+𝙾𝙽+𝙷𝙴𝚁𝙾𝙺𝚄♦;📡+𝙽𝙾+𝙷𝙴𝚁𝙾𝙺𝚄+𝙱𝙰𝙽+𝙸𝚂𝚂𝚄𝙴+𝙰𝙻𝚂𝙾+𝚅𝙿𝚂+𝙳𝙴𝙿𝙻𝙾𝚈+📍+𝙿𝚁𝙴𝚂𝙴𝙽𝚃;❤️+𝙿𝙾𝚆𝙴𝚁𝙳+𝙱𝚈+𝗜𝗦𝗧𝗞𝗛𝗔𝗥+𝗞𝗜𝗡𝗚🔥">
+<img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=♦𝙳𝙴𝙿𝙻𝙾𝚈+𝙾𝙽+𝙷𝙴𝚁𝙾𝙺𝚄♦;📡+𝙽𝙾+𝙷𝙴𝚁𝙾𝙺𝚄+𝙱𝙰𝙽+𝙸𝚂𝚂𝚄𝙴+𝙰𝙻𝚂𝙾+𝚅𝙿𝚂+𝙳𝙴𝙿𝙻𝙾𝚈+📍+𝙿𝚁𝙴𝚂𝙴𝙽𝚃;❤️+𝙿𝙾𝚆𝙴𝚁𝙳+𝙱𝚈+𝐒ͱ꧊᱂ᴇᴇ֟֟፝͠ 💗🔥">
 
 <p align="center">
   <img src="https://telegra.ph/file/925eade709484516c5fe3.jpg">
@@ -28,11 +28,11 @@
     ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
 </h3>
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/ISTKHAR-king/ISTKHAR_MUSIC"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/rockStar378/Rashi_MUSIC"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 
 </p>
 
-**𝙏𝙀𝙎𝙏 𝘽𝙊𝙏 ➣ [˹𝐈sᴛᴋʜᴀʀ ꭙ 𝐌ᴜꜱɪᴄ™ ˹ꜱ](https://t.me/KittuXrobot)**
+**𝙏𝙀𝙎𝙏 𝘽𝙊𝙏 ➣ [𝐊𝖺𝗏𝗒𝖺 ꭙ 𝐌ᴜsɪᴄ™ ˹ꜱ](https://t.me/kavya_music_robot)**
 
 
 
