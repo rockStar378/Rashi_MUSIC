@@ -37,7 +37,6 @@ from config import (
     API_HASH, 
     OWNER_ID,
     LOGGER_ID, 
-    CLONE_LOGGER, 
     SUPPORT_CHAT, 
     SUPPORT_CHANNEL, 
     START_IMG_URL
