@@ -35,8 +35,7 @@ from ISTKHAR_MUSIC.misc import SUDOERS
 from config import (
     API_ID, 
     API_HASH, 
-    OWNER_ID, 
-    OWNER_USERNAME,
+    OWNER_ID,
     LOGGER_ID, 
     CLONE_LOGGER, 
     SUPPORT_CHAT, 
