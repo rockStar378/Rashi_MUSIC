@@ -16,7 +16,6 @@ DOWNLOAD_DIR = "downloads"
 LOGGER = logging.getLogger(__name__)
 
 # --- API 1: Shruti ---
-# ✅ FIXED: Replaced '=' with ',' in os.environ.get
 API_URL = os.environ.get("SHRUTI_API_URL", "https://api.shrutibots.site")
 API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotsC0WH1GowF2HkGoKv4F3y")
 
@@ -64,17 +63,14 @@ async def single_api_download(api_name: str, req_url: str, params: dict, final_p
     """Downloads from a single API with STRICT timeouts and valid file checks."""
     temp_path = f"{final_path}_{api_name.replace(' ', '')}.tmp"
     
-    # 🟢 ANTI-HANG TIMEOUTS:
-    # connect=3: Maximum 3 seconds to connect.
-    # sock_read=5: Agar download karte time API atak gayi (5s tak koi data nahi aaya), toh instant kill.
-    # total=120: Maximum 2 mins per API.
+    # 🟢 ANTI-HANG TIMEOUTS
     strict_timeout = aiohttp.ClientTimeout(total=120, connect=3, sock_read=5)
     
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(req_url, params=params, timeout=strict_timeout) as resp:
                 if resp.status == 200:
-                    # 🔴 FIX: Check if API returned an error (JSON/HTML) instead of a media file
+                    # 🔴 FIX: Prevent downloading JSON/HTML error pages as MP3
                     content_type = resp.headers.get("Content-Type", "").lower()
                     if "application/json" in content_type or "text/html" in content_type:
                         LOGGER.warning(f"❌ {api_name} returned fake media (JSON/HTML). Skipping...")
@@ -84,10 +80,9 @@ async def single_api_download(api_name: str, req_url: str, params: dict, final_p
                         async for chunk in resp.content.iter_chunked(131072):
                             f.write(chunk)
                     
-                    # 🔴 FIX: Real songs/videos are always larger than 50KB. 
-                    # If it's smaller, it's a corrupted/error file.
+                    # 🔴 FIX: Audio/Video files should be > 50KB.
                     if os.path.exists(temp_path) and os.path.getsize(temp_path) > 50000: 
-                        if not os.path.exists(final_path):  # Check if another API already won
+                        if not os.path.exists(final_path): 
                             os.rename(temp_path, final_path)
                             LOGGER.info(f"⚡ FASTEST API WON: {api_name} downloaded the file first!")
                             return final_path
@@ -99,7 +94,6 @@ async def single_api_download(api_name: str, req_url: str, params: dict, final_p
     except Exception as e:
         LOGGER.debug(f"❌ {api_name} failed: {e}")
     finally:
-        # Cleanup temporary files
         if os.path.exists(temp_path):
             try: os.remove(temp_path)
             except: pass
@@ -146,18 +140,16 @@ async def race_all_apis(video_id: str, download_type: str, title: str) -> str:
     if not tasks:
         return None
 
-    # Wait for the first API to finish downloading successfully
     for completed_task in asyncio.as_completed(tasks):
         result = await completed_task
         if result:
-            # Cancel the slower tasks immediately to save bandwidth
             for t in tasks:
                 if not t.done():
                     t.cancel()
             return result
-
     return None
 
+# 🔴 FALLBACK: YT-DLP with COOKIES implemented
 async def ytdl_fallback_download(link: str, download_type: str, title: str = None) -> str:
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
     video_id = extract_video_id(link)
@@ -175,6 +167,7 @@ async def ytdl_fallback_download(link: str, download_type: str, title: str = Non
         'outtmpl': file_path,
         'quiet': True,
         'no_warnings': True,
+        # 🟢 USING COOKIES FOR BYPASSING RESTRICTIONS
         'cookiefile': 'cookies.txt',
         'extractor_args': {'youtube': ['player_client=ios,tv_embedded']}, 
         'geo_bypass': True,
@@ -182,6 +175,10 @@ async def ytdl_fallback_download(link: str, download_type: str, title: str = Non
         'noplaylist': True,
     }
     
+    # Check if cookies.txt exists in root directory, if not, log a warning
+    if not os.path.exists("cookies.txt"):
+        LOGGER.warning("⚠️ cookies.txt not found! YouTube downloads might fail for age-restricted/blocked tracks.")
+
     if download_type == "audio":
         ydl_opts['postprocessors'] = [{
             'key': 'FFmpegExtractAudio',
@@ -302,17 +299,14 @@ async def download_song(link: str, title: str = None) -> str:
         except Exception:
             pass
 
-    # 🟢 1ST PRIORITY: RACE ALL APIS (Fastest out of 4 wins)
     LOGGER.info(f"Racing all APIs for the fastest download: {title}")
     api_result = await race_all_apis(video_id, "audio", title)
     if api_result: return api_result
 
-    # 🟡 2ND PRIORITY: yt-dlp with cookies.txt
-    LOGGER.warning(f"All APIs failed or timed out. Falling back to yt-dlp for: {title}")
+    LOGGER.warning(f"All APIs failed or timed out. Falling back to yt-dlp (with cookies) for: {title}")
     yt_result = await ytdl_fallback_download(link, "audio", title)
     if yt_result: return yt_result
     
-    # 🔴 3RD PRIORITY: Source-Hopping (Spotify, JioSaavn, SoundCloud)
     if title:
         LOGGER.warning(f"🔴 YouTube blocked '{title}'. Hopping to Spotify...")
         sp_result = await spotify_fallback_download(title)
@@ -342,19 +336,18 @@ async def download_video(link: str, title: str = None) -> str:
         except:
             pass
 
-    # 🟢 1ST PRIORITY: RACE ALL APIS
     LOGGER.info(f"Racing APIs for video download: {title}")
     api_result = await race_all_apis(video_id, "video", title)
     if api_result: return api_result
 
-    # 🟡 2ND PRIORITY: yt-dlp
-    LOGGER.warning(f"APIs failed. Falling back to yt-dlp video download for: {title}")
+    LOGGER.warning(f"APIs failed. Falling back to yt-dlp (with cookies) for video: {title}")
     yt_result = await ytdl_fallback_download(link, "video", title)
     if yt_result: return yt_result
 
     return None
 
 # ----------------- YOUTUBE API CLASS -----------------
+# 🔴 FIX: Added "if not link:" checks everywhere to prevent TypeError during /vplay commands
 
 class YouTubeAPI:
     def __init__(self):
@@ -365,6 +358,7 @@ class YouTubeAPI:
         self.reg = re.compile(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
 
     async def exists(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return False 
         if videoid: link = self.base + link
         return bool(re.search(self.regex, link))
 
@@ -385,6 +379,7 @@ class YouTubeAPI:
         return None
 
     async def details(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return None, None, None, None, None
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
             
@@ -430,6 +425,7 @@ class YouTubeAPI:
         return None, None, None, None, None
 
     async def title(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return "Unknown Title"
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
         try:
@@ -440,6 +436,7 @@ class YouTubeAPI:
             return "Unknown Title"
 
     async def duration(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return "0:00"
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
         try:
@@ -450,6 +447,7 @@ class YouTubeAPI:
             return "0:00"
 
     async def thumbnail(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return "https://telegra.ph/file/2e3d368e77c449c287430.jpg"
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
         try:
@@ -460,6 +458,7 @@ class YouTubeAPI:
             return "https://telegra.ph/file/2e3d368e77c449c287430.jpg"
 
     async def video(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return 0, "No link provided"
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
         try:
@@ -471,6 +470,7 @@ class YouTubeAPI:
             return 0, f"Video download error: {e}"
 
     async def playlist(self, link, limit, user_id, videoid: Union[bool, str] = None):
+        if not link: return []
         if videoid: link = self.listbase + link
         if "&" in link: link = link.split("&")[0]
         try:
@@ -487,6 +487,7 @@ class YouTubeAPI:
         return ids
 
     async def track(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return None, None
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
             
@@ -537,6 +538,7 @@ class YouTubeAPI:
         return None, None
 
     async def formats(self, link: str, videoid: Union[bool, str] = None):
+        if not link: return [], None
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
             
@@ -577,6 +579,7 @@ class YouTubeAPI:
         return formats_available, link
 
     async def slider(self, link: str, query_type: int, videoid: Union[bool, str] = None):
+        if not link: return "Unknown Title", "0:00", "https://telegra.ph/file/2e3d368e77c449c287430.jpg", "None"
         if videoid: link = self.base + link
         if "&" in link: link = link.split("&")[0]
             
@@ -592,6 +595,7 @@ class YouTubeAPI:
         songaudio: Union[bool, str] = None, songvideo: Union[bool, str] = None, format_id: Union[bool, str] = None,
         title: Union[bool, str] = None,
     ) -> str:
+        if not link: return None, False
         if videoid: link = self.base + link
         try:
             file_title = title if isinstance(title, str) else None
@@ -606,6 +610,7 @@ class YouTubeAPI:
             return None, False
 
     async def autoplay(self, last_vidid: str, title: str, max_duration: int = None):
+        if not title: return None
         try:
             import random
             search_query = f"{title} official audio"
@@ -640,14 +645,14 @@ class YouTubeAPI:
             except Exception: pass 
 
             if not valid_choices:
-                ytdl_opts = {
+                ydl_opts = {
                     "quiet": True, 
                     "extract_flat": True, 
                     "noplaylist": True,
                     "cookiefile": "cookies.txt",
                     "extractor_args": {"youtube": ["player_client=ios,tv_embedded"]} 
                 } 
-                ydl = yt_dlp.YoutubeDL(ytdl_opts)
+                ydl = yt_dlp.YoutubeDL(ydl_opts)
                 
                 r = await _async_run(ydl.extract_info, f"ytsearch10:{search_query}", download=False)
                 if r and "entries" in r:
