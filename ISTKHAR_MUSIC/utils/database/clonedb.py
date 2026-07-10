@@ -1,4 +1,4 @@
-from ISTKHAR_MUSIC.mongo import mongodb
+from ISTKHAR_MUSIC.core.mongo import mongodb
 from typing import Dict, List, Union
 
 # ==========================================
