@@ -26,7 +26,7 @@ import pyrogram.errors
 
 # --- LOCAL IMPORTS ---
 from ISTKHAR_MUSIC import app
-from ISTKHAR_MUSIC.database import get_assistant, clonebotdb
+from ISTKHAR_.utils.database import get_assistant, clonebotdb
 from ISTKHAR_MUSIC.utils.database.clonedb import has_user_cloned_any_bot, get_owner_id_from_db
 from ISTKHAR_MUSIC.utils.decorators.language import language
 from ISTKHAR_MUSIC import SUDOERS
