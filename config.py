@@ -33,8 +33,8 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # Get it from http://dashboard.heroku.com/account
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-API_KEY = getenv("API_KEY", "StrangerApia3075f5")
-API_BASE_URL = getenv("API_BASE_URL", "http://riyabots.site")
+YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com')
+YT_API_KEY = getenv("YT_API_KEY" , 'xbit_kp3GFnAvdnFVDV3L6xACy-jbVBE5q5Cd')
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/rockStar378/Rashi_MUSIC",
