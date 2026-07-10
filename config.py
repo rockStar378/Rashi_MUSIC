@@ -33,8 +33,22 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # Get it from http://dashboard.heroku.com/account
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com')
-YT_API_KEY = getenv("YT_API_KEY" , 'xbit_kp3GFnAvdnFVDV3L6xACy-jbVBE5q5Cd')
+# --- API 1: Shruti ---
+# ✅ FIXED: Replaced '=' with ',' in os.environ.get
+API_URL = os.environ.get("SHRUTI_API_URL", "https://api.shrutibots.site")
+API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotsC0WH1GowF2HkGoKv4F3y")
+
+# --- API 2: Xbit ---
+YTPROXY_URL = os.getenv("YTPROXY_URL", "https://tgapi.xbitcode.com")
+YT_API_KEY = os.getenv("YT_API_KEY" , "xbit_kp3GFnAvdnFVDV3L6xACy-jbVBE5q5Cd")
+
+# --- API 3: Worker ---
+WORKER_FALLBACK_API_URL = os.getenv("WORKER_FALLBACK_API_URL", "https://youtubenewapi.skybotsdeveloper.workers.dev")
+WORKER_FALLBACK_API_KEY = os.getenv("WORKER_FALLBACK_API_KEY", "itsmesid")
+
+# --- API 4: Inflex ---
+INFLEX_API_URL = os.getenv("INFLEX_API_URL", "https://teaminflex.xyz")
+INFLEX_API_KEY = os.getenv("INFLEX_API_KEY", "INFLEX40920628D")
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/rockStar378/Rashi_MUSIC",
