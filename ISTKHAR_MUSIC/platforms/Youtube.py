@@ -17,7 +17,7 @@ LOGGER = logging.getLogger(__name__)
 
 # --- API 1: Shruti ---
 API_URL = os.environ.get("SHRUTI_API_URL", "https://api.shrutibots.site")
-API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotsC0WH1GowF2HkGoKv4F3y")
+API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotskwvos7QCW6KasrmgpVtt")
 
 # --- API 2: Xbit ---
 YTPROXY_URL = os.getenv("YTPROXY_URL", "https://tgapi.xbitcode.com")
