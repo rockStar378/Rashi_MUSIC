@@ -35,7 +35,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 # --- API 1: Shruti ---
 API_URL = os.environ.get("SHRUTI_API_URL", "https://api.shrutibots.site")
-API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotskwvos7QCW6KasrmgpVtt")
+API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBotsjqQW9zgbddaSGqwXE5Fr")
 
 # --- API 2: Xbit ---
 YTPROXY_URL = os.getenv("YTPROXY_URL", "https://tgapi.xbitcode.com")
