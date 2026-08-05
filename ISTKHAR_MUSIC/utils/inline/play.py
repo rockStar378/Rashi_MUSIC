@@ -71,7 +71,7 @@ def stream_markup_timer(_, vidid, chat_id, played, dur):
                 text="🥀 ᴏᴡɴᴇʀ 🥀", url=f"https://t.me/VIP_ANKIT_121"
             ),
             InlineKeyboardButton(
-                text="🥀 ᴄʜᴀᴛ 🥀", url=f"https://t.me/+eDGuiLMGvO0zNmFl"
+                text="🥀 ᴄʜᴀᴛ 🥀", url=f"https://t.me/shree_update"
             ),
         ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
@@ -93,7 +93,7 @@ def stream_markup(_, videoid, chat_id):
                 text="🥀 ᴏᴡɴᴇʀ 🥀", url=f"https://t.me/VIP_ANKIT_121"
             ),
             InlineKeyboardButton(
-                text="🥀 ᴄʜᴀᴛ 🥀", url=f"https://t.me/+eDGuiLMGvO0zNmFl"
+                text="🥀 ᴄʜᴀᴛ 🥀", url=f"https://t.me/shree_update"
             ),
         ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
