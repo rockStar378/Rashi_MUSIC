@@ -42,7 +42,7 @@ YTPROXY_URL = os.getenv("YTPROXY_URL", "https://tgapi.xbitcode.com")
 YT_API_KEY = os.getenv("YT_API_KEY" , "xbit_kp3GFnAvdnFVDV3L6xACy-jbVBE5q5Cd")
 
 # --- API 3: Worker ---
-API_TOKEN = '6JZJp4a9c1'
+API_TOKEN = 'xbit_kp3GFnAvdnFVDV3L6xACy-jbVBE5q5Cd'
 BASE_URL = 'http://api.nubcoders.com'
 
 # --- API 4: Inflex ---
